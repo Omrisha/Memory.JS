@@ -142,5 +142,24 @@ function chagneSetting(){
 }
 
 function restrart(){
+    var cards = document.querySelectorAll('.memory-card');
+    cards.forEach(card => {
+        let randomPos = Math.floor(Math.random() * 12);
+        card.style.order = randomPos;
+        card.classList.remove('flip');
+    });
 
+    if (configObj.player1Score > configObj.player2Score) {
+        playerTurn = 1;
+        document.getElementById('p2image').style.visibility = 'hidden';
+        document.getElementById('p1image').style.visibility = 'visible';
+        configObj.currentPlayer = playerTurn;
+    } else {
+        playerTurn = 2;
+        document.getElementById('p2image').style.visibility = 'visible';
+        document.getElementById('p1image').style.visibility = 'hidden';
+        configObj.currentPlayer = playerTurn;
+    }
+
+    window.localStorage.setItem('config', JSON.stringify(configObj));
 }

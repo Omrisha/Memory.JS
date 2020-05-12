@@ -6,15 +6,59 @@
 
 body {
   height: 100vh;
-  background: #060AB2;
+  background: rgb(255, 255, 255);
 }
 
 .header {
-  text-align: center; 
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  background-color: #1abc9c;
+  width: 100%;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.input-button {
+  font-size: x-large;
+  padding: 20px;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left, .right {
+  width: 25%;
+  background: #1abc9c;
+  text-align: center;
+  margin: auto;
+}
+
+.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  clear: both;
 }
 
 .memory-game {
+  position: relative;
   width: 640px;
   height: 640px;
   margin: auto;

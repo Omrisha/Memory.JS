@@ -2,7 +2,7 @@ let objJson = window.localStorage.getItem('config');
 
 function startGame() {
     if (objJson === null) {
-        window.localStorage.setItem('config', JSON.stringify({
+        objJson = {
             player1Name: '',
             player2Name: '',
             player1Score: 0,
@@ -10,7 +10,8 @@ function startGame() {
             boardSize: 0,
             isGameStarted: false,
             currentPlayer: 1
-        }));
+        };
+        window.localStorage.setItem('config', JSON.stringify(objJson));
     } 
     
     if (objJson.isGameStarted){

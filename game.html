@@ -9,30 +9,25 @@
 <body onload="InitBoard()">
     <script src="gamelogic.js" lang="text/javascript"></script>
     <h1 class="header">Memory.JS</h1>
-    <table>
-        <tr>
-            <td style="padding: 50px; color: white;">
-                <h3>Player 1:</h3>
-                <img id="p1image" src="img/turn.png"><h3 id="player1name"></h3>
-                <br/>
-                <h3>Score:</h3>
-                <h3 id="player1score"></h3>
-                <br/>
-                <h3>Player 2:</h3>
-                <img id="p2image" src="img/turn.png"><h3 id="player2name"></h3>
-                <br/>
-                <h3>Score:</h3>
-                <h3 id="player2score"></h3>
-                <input type="button" value="Change Settings" onclick="chagneSetting()" style="font-size:x-large";/>
-                <br/>
-                <input type="button" value="Restart" onclick="restrart()" style="font-size: x-large"/>
-            </td>
-            <td>
-                <section id="board" class="memory-game" >
-        
-                </section>
-            </td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="column left">
+            <img id="p1image" src="img/turn.png"><h3>Player 1:</h3><h3 id="player1name"></h3>
+            <br/>
+            <h3>Score:</h3><h3 id="player1score"></h3>
+        </div>
+        <div class="column middle">
+            <section id="board" class="memory-game" ></section>
+        </div>
+        <div class="column right">
+            <img id="p2image" src="img/turn.png"><h3>Player 2:</h3><h3 id="player2name"></h3>
+            <br/>
+            <h3>Score:</h3><h3 id="player2score"></h3>
+        </div>
+    </div>
+    <div class="footer">
+        <input class="input-button" type="button" value="Change Settings" onclick="chagneSetting()" style="padding: 5px;";/>
+        <input class="input-button" type="button" value="Restart" onclick="restrart()" style="padding: 5px;"/>
+        <p>All rights reserved to Omri Shapira © <script>Date().now().year()</script></p>
+    </div>
 </body>
 </html>
