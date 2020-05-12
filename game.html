@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory.JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="InitBoard()">
+    <script src="gamelogic.js" lang="text/javascript"></script>
+    <h1 class="header">Memory.JS</h1>
+    <table>
+        <tr>
+            <td style="padding: 50px; color: white;">
+                <h3>Player 1:</h3>
+                <img id="p1image" src="img/turn.png"><h3 id="player1name"></h3>
+                <br/>
+                <h3>Score:</h3>
+                <h3 id="player1score"></h3>
+                <br/>
+                <h3>Player 2:</h3>
+                <img id="p2image" src="img/turn.png"><h3 id="player2name"></h3>
+                <br/>
+                <h3>Score:</h3>
+                <h3 id="player2score"></h3>
+                <input type="button" value="Change Settings" onclick="chagneSetting()" style="font-size:x-large";/>
+                <br/>
+                <input type="button" value="Restart" onclick="restrart()" style="font-size: x-large"/>
+            </td>
+            <td>
+                <section id="board" class="memory-game" >
+        
+                </section>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
