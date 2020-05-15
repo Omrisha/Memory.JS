@@ -5,8 +5,7 @@
 }
 
 body {
-  height: 100vh;
-  background: rgb(255, 255, 255);
+  background: #1abc9c;
 }
 
 .header {
@@ -24,10 +23,11 @@ body {
   width: 100%;
   text-align: center;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .input-button {
-  font-size: x-large;
+  font-size: xx-large;
   padding: 20px;
 }
 
@@ -35,6 +35,8 @@ body {
 .column {
   float: left;
   padding: 10px;
+  border: black;
+  border-radius: 10px;
 }
 
 .left, .right {

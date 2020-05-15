@@ -71,6 +71,25 @@ function cardClick(){
     secondCard = this;
 
     checkForMatch();
+
+    // checking winning
+    var cards = document.querySelectorAll('.memory-card');
+    var counter = 0;
+    cards.forEach(c => {
+        if (c.classList.contains("flip")){
+            counter++;
+        }
+    });
+
+    if (configObj.boardSize === '3'){
+        if (counter === cards.length - 1){
+            var winMsg = document.getElementById('winner-text');
+            winMsg.innerText = 'Player' + playerTurn + 'wins the game!';
+        }
+    } else if (counter === cards.length){
+        var winMsg = document.getElementById('winner-text');
+        winMsg.innerText = 'Player' + playerTurn + 'wins the game!';
+    }
 }
 
 function checkForMatch(){
@@ -147,7 +166,12 @@ function restrart(){
         let randomPos = Math.floor(Math.random() * 12);
         card.style.order = randomPos;
         card.classList.remove('flip');
+        card.addEventListener("click", cardClick);
     });
+
+    resetBoard();
+
+    lockBoard = false;
 
     if (configObj.player1Score > configObj.player2Score) {
         playerTurn = 1;
@@ -160,6 +184,9 @@ function restrart(){
         document.getElementById('p1image').style.visibility = 'hidden';
         configObj.currentPlayer = playerTurn;
     }
+
+    var winMsg = document.getElementById('winner-text');
+    winMsg.innerText = '';
 
     window.localStorage.setItem('config', JSON.stringify(configObj));
 }
