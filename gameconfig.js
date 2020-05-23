@@ -36,6 +36,8 @@ function startGame() {
         return false;
     } else {
         config.player1Name = p1Name.value;
+        config.player1Score = 0;
+        config.player2Score = 0;
         config.player2Name = p2Name.value;
         config.isGameStarted = true;
         window.localStorage.setItem('config', JSON.stringify(config));

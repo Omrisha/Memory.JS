@@ -71,25 +71,19 @@ function cardClick(){
     secondCard = this;
 
     checkForMatch();
+}
 
-    // checking winning
-    var cards = document.querySelectorAll('.memory-card');
-    var counter = 0;
-    cards.forEach(c => {
-        if (c.classList.contains("flip")){
-            counter++;
-        }
-    });
+function showWinDivs(){
+    var winMsg = document.getElementById('winner-text');
+    if (configObj.player1Score > configObj.player2Score)
+        winMsg.innerText = 'Player 1 wins the game!';
+    else if (configObj.player1Score < configObj.player2Score)
+        winMsg.innerText = 'Player 2 wins the game!';
+    else 
+        winMsg.innerText = 'The game ended with a draw!';
 
-    if (configObj.boardSize === '3'){
-        if (counter === cards.length - 1){
-            var winMsg = document.getElementById('winner-text');
-            winMsg.innerText = 'Player' + playerTurn + 'wins the game!';
-        }
-    } else if (counter === cards.length){
-        var winMsg = document.getElementById('winner-text');
-        winMsg.innerText = 'Player' + playerTurn + 'wins the game!';
-    }
+    document.getElementById('newGameBtn').disabled = false;
+    document.getElementById('resetBtn').disabled = false;
 }
 
 function checkForMatch(){
@@ -111,20 +105,50 @@ function disableCards(){
     firstCard.removeEventListener('click', cardClick);
     secondCard.removeEventListener('click', cardClick);
 
+    // checking winning
+    var cards = document.querySelectorAll('.memory-card');
+    var counter = 0;
+    cards.forEach(c => {
+        if (c.classList.contains("flip")){
+            counter++;
+        }
+    });
+
+    if (configObj.boardSize === 3){
+        if (counter === cards.length - 1){
+            showWinDivs();
+        }
+    } else if (counter === cards.length){
+        showWinDivs();
+    }
+
     resetBoard();
 }
 
 function unflipCards(){
     lockBoard = true;
-    setTimeout(() => {
-        firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
-        
-        chagneTurn();
-        
-        lockBoard = false;
-        resetBoard();
-    }, 1500);
+    const flipCardsTimeout = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            try {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+                
+                chagneTurn();
+                
+                lockBoard = false;
+                resetBoard();
+                resolve('Wrong guess, player ' + playerTurn + ' turn now.');
+            } catch (error) {
+                reject(error);
+            }
+        }, 1500);
+    });
+
+    flipCardsTimeout.then(function(result){
+        alert(result);
+    }).catch(function(error){
+        alert("There's an error in the flipping process, " + error);
+    });
 }
 
 function chagneTurn(){
@@ -187,6 +211,8 @@ function restrart(){
 
     var winMsg = document.getElementById('winner-text');
     winMsg.innerText = '';
+    document.getElementById('newGameBtn').disabled = true;
+    document.getElementById('resetBtn').disabled = true;
 
     window.localStorage.setItem('config', JSON.stringify(configObj));
 }
